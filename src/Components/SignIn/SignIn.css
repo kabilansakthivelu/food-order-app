@@ -1,0 +1,57 @@
+:root{
+    @apply bg-red-400
+}
+.signInPage{
+    @apply flex mx-8 my-12 h-full
+}
+.signInLeftPanel{
+    @apply hidden md:block bg-image bg-cover bg-no-repeat bg-center w-screen mr-0 rounded-l-xl
+}
+.signInModal{
+    @apply text-center h-full ml-0 p-3 w-screen sm:w-3/4 sm:mx-auto lg:text-xl md:py-24 lg:py-28 md:bg-white rounded-r-xl
+}
+.title{
+    @apply font-bold text-2xl md:text-3xl lg:my-3
+}
+.description{
+    @apply text-lg my-4 lg:text-xl
+}
+.googleSignInBtn{
+    @apply flex items-center border-2 rounded-xl justify-center md:border-gray-400 h-11 lg:h-12 lg:w-9/12 mx-auto md:my-4 cursor-pointer bg-white
+}
+.googleSignInBtnDesc{
+    @apply mx-auto ml-0
+}
+.googleIcon{
+    @apply mx-auto mt-2 text-3xl lg:text-4xl pb-2 mr-2 lg:mt-1
+}
+.orDividerDiv{
+    @apply flex items-center justify-center
+}
+.orDividerRuler{
+    @apply w-5/12 md:w-4/12
+}
+.orDivider{
+    @apply md:text-gray-400 my-3 mx-3
+}
+.loginForm{
+    @apply flex flex-col text-left leading-loose lg:w-3/4 mx-auto
+}
+.inputFieldDiv{
+    @apply flex items-center rounded-xl h-11 my-4 pl-4 border-2 md:border-gray-400 lg:h-12 bg-white
+}
+.inputFieldIcon{
+    @apply md:text-gray-500 text-2xl mr-3
+}
+.inputField{
+    @apply outline-none
+}
+.signInBtn{
+    @apply border-2 md:border-white rounded-xl m-2 w-28 mx-auto w-full bg-white md:bg-red-400 md:text-white h-11 lg:h-12
+}
+.footer{
+    @apply flex justify-center mt-2
+}
+.signUpLink{
+    @apply pl-2 text-blue-800 md:text-blue-500 underline
+}
