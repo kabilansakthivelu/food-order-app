@@ -41,7 +41,7 @@
     @apply flex items-center rounded-xl h-11 my-4 pl-4 border-2 md:border-gray-400 lg:h-12 bg-white
 }
 .inputFieldIcon{
-    @apply md:text-gray-500 text-2xl mr-3
+    @apply text-gray-500 text-2xl mr-3
 }
 .inputField{
     @apply outline-none

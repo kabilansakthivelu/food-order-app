@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import SignUp from './Components/SignUp/SignUp';
+import SignUp from './Components/SignUp';
 import SignIn from './Components/SignIn/SignIn';
 import Home from './Components/Home/Home';
 import Cart from './Components/Cart/Cart';
