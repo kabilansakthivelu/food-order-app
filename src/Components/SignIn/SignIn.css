@@ -44,7 +44,7 @@
     @apply text-gray-500 text-2xl mr-3
 }
 .inputField{
-    @apply outline-none
+    @apply outline-none md:w-10/12 overflow-ellipsis
 }
 .signInBtn{
     @apply border-2 md:border-white rounded-xl m-2 w-28 mx-auto w-full bg-white md:bg-red-400 md:text-white h-11 lg:h-12
