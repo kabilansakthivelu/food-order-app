@@ -1,23 +1,20 @@
-:root{
-    @apply bg-red-400
-}
 .signInPage{
-    @apply flex mx-8 my-12 h-full
+    @apply flex
 }
 .signInLeftPanel{
-    @apply hidden md:block bg-image bg-cover bg-no-repeat bg-center w-screen mr-0 rounded-l-xl
+    @apply hidden md:block bg-image bg-cover bg-no-repeat bg-center w-screen mr-0 h-screen 
 }
 .signInModal{
-    @apply text-center h-full ml-0 p-3 w-screen sm:w-3/4 sm:mx-auto lg:text-xl md:py-24 lg:py-28 md:bg-white rounded-r-xl
+    @apply text-center h-full ml-0 p-3 w-screen sm:w-3/4 sm:mx-auto lg:text-xl md:py-24 lg:py-28 md:bg-white h-screen bg-red-200
 }
 .title{
-    @apply font-bold text-2xl md:text-3xl lg:my-3
+    @apply font-bold text-2xl md:text-4xl lg:my-3 italic text-red-500
 }
 .description{
     @apply text-lg my-4 lg:text-xl
 }
 .googleSignInBtn{
-    @apply flex items-center border-2 rounded-xl justify-center md:border-gray-400 h-11 lg:h-12 lg:w-9/12 mx-auto md:my-4 cursor-pointer bg-white
+    @apply flex items-center border-2 rounded-xl justify-center md:border-gray-400 h-11 lg:h-12 lg:w-9/12 mx-auto md:my-4 cursor-pointer bg-white md:hover:border-red-400 md:hover:text-red-400
 }
 .googleSignInBtnDesc{
     @apply mx-auto ml-0
@@ -44,10 +41,10 @@
     @apply text-gray-500 text-2xl mr-3
 }
 .inputField{
-    @apply outline-none md:w-10/12 overflow-ellipsis
+    @apply outline-none w-10/12 overflow-ellipsis
 }
 .signInBtn{
-    @apply border-2 md:border-white rounded-xl m-2 w-28 mx-auto w-full bg-white md:bg-red-400 md:text-white h-11 lg:h-12
+    @apply border-2 md:border-white rounded-xl m-2 w-28 mx-auto w-full bg-white md:bg-red-400 md:text-white h-11 lg:h-12 md:hover:bg-white md:hover:text-red-400 md:hover:border-red-400
 }
 .footer{
     @apply flex justify-center mt-2
