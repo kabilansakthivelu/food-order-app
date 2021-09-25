@@ -2,6 +2,7 @@ import React from 'react';
 import {auth} from '../../firebase';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import SignIn from '../SignIn/SignIn';
+import HeaderAndNavbar from '../HeaderAndNavbar/HeaderAndNavbar';
 import './Home.css';
 
 const Home = () => {
@@ -10,7 +11,14 @@ const Home = () => {
 
     return (
         <div>
-           {user ? <h1>Hello welcome user</h1> : <SignIn/>}
+           {user ? (
+           <>
+           <HeaderAndNavbar/>
+           </>
+           ) 
+           : 
+           <SignIn/>
+           }
         </div>
     )
 }

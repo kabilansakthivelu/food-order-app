@@ -1,0 +1,15 @@
+.header{
+    @apply flex justify-between items-center w-full h-14 bg-red-500
+}
+.headerTitle{
+    @apply text-white text-xl ml-4 font-bold
+}
+.headerIcon{
+    @apply text-white text-2xl mr-4
+}
+.navbar{
+    @apply h-screen
+}
+.hamburgerMenuList{
+    @apply flex items-center mx-4 py-4 text-xl space-x-3 border-b-2
+}
