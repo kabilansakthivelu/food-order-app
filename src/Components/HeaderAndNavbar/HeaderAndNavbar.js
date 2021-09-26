@@ -135,7 +135,7 @@ const Header = () => {
         <>
         {/* For screen size >= 768 px */}
         <div className="navbar1">
-        <h1 className="header1">Food Dunzo</h1>
+        <h1 className="header1" onClick={()=>{history.push("/")}}>Food Dunzo</h1>
         <div className="navbarDiv">
         {navbar.map((menu)=>{
             let abc = "";

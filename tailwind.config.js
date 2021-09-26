@@ -7,6 +7,7 @@ module.exports = {
          'image': "url('https://a-static.besthdwallpaper.com/western-food-hamburger-french-fries-and-variety-of-vegetable-in-one-table-wallpaper-3840x2400-60595_9.jpg')",
         },
       width: {
+         '1/8': '10%',
          '1/7': '12.5%',
        },
     },

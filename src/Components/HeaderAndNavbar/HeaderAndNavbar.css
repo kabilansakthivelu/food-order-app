@@ -23,7 +23,7 @@
     @apply md:w-2/12 lg:w-1/7 h-screen text-center
 }
 .header1{
-    @apply font-bold text-xl xl:text-2xl text-red-500 mt-6 italic
+    @apply font-bold text-xl xl:text-2xl text-red-500 mt-6 italic cursor-pointer
 }
 .navbarDiv{
     @apply mt-16 xl:mt-28 lg:mt-20 flex flex-col items-center space-y-2
