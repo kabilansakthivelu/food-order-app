@@ -15,6 +15,8 @@ const Home = () => {
 
     const [categories, setCategories] = useState([]);
 
+    const [foodItemsArray, setFoodItemsArray] = useState();
+
     useEffect(()=>{
     db.collection('food').get().then((snapshot)=>{  
         const arr = [];
@@ -24,6 +26,18 @@ const Home = () => {
     setCategories(arr);
     })                            
     },[])
+
+    const categorySelected = (id, name) =>{
+        // document.getElementById(id).style.backgroundColor = "yellow";
+        const itemsRef = db.collection('food').doc(name).collection('foodItems');
+        itemsRef.onSnapshot((snapshot)=>{
+            let arr = [];
+            snapshot.forEach((doc)=>{
+                arr.push(doc.data())
+            })
+            setFoodItemsArray(arr);
+        })
+    }
 
     return (               
         <div>                                                                                                                  
@@ -62,7 +76,7 @@ const Home = () => {
                         
                 }
                 return(
-                <div className="individualCategory" key={type.id}>
+                <div className="individualCategory" key={type.id} onClick={()=>{categorySelected(type.id, type.name)}}>
                 <div className="categoryIcon">
                 {image}
                 </div>
@@ -71,6 +85,18 @@ const Home = () => {
            )})}
            </div>
            <p className="foodItemsTitle">Food Items</p>
+           {foodItemsArray ? (
+           <>
+           {foodItemsArray.map((item)=>{
+               return(
+                   <div key={item.id}>
+                    <img src={item.imageURL} alt="" />
+                    <h1>{item.name}</h1>
+                   </div>
+               )
+           })}
+           </>
+           ) : <h1 className="itemsDefaultDescription">Select a category from the above list to order your favorite items</h1>}
            </div>
            ) : "" }
            </div>
