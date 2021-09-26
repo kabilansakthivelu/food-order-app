@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import SignUp from './Components/SignUp';
 import SignIn from './Components/SignIn/SignIn';
@@ -14,10 +14,11 @@ function App() {
 
   const refEmail = useRef();
   const refPassword = useRef();
+  const [mainContentShow,setMainContentShow] = useState(true);
 
   return (
     <Router>
-    <ValuesContext.Provider value={{refEmail, refPassword}}>
+    <ValuesContext.Provider value={{refEmail, refPassword, mainContentShow, setMainContentShow}}>
       <Switch>
         <Route path="/signup">
           <SignUp/>

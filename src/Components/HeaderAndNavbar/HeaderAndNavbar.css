@@ -8,7 +8,7 @@
     @apply text-white text-2xl mr-4
 }
 .navbar{
-    @apply h-screen
+    @apply h-full
 }
 .hamburgerMenuList{
     @apply flex items-center mx-4 py-4 text-xl space-x-3 border-b-2

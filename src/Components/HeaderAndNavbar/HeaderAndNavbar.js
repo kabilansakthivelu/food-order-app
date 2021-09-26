@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {ValuesContext} from '../../App';
 import {GiHamburgerMenu} from 'react-icons/gi';
 import {AiOutlineClose, AiFillHome, AiOutlineLogout} from 'react-icons/ai';
 import {FaShoppingCart} from 'react-icons/fa';
@@ -10,11 +11,20 @@ const Header = () => {
 
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
-    const [isHamnurgerMenuShow, setIsHamnurgerMenuShow] = useState(false);
+    const [isHamburgerMenuShow, setIsHamburgerMenuShow] = useState(false);
+
+    const {mainContentShow, setMainContentShow} = useContext(ValuesContext);
 
     const hamburgerIconClick = () =>{
     setIsHamburgerOpen(!isHamburgerOpen);
-    setIsHamnurgerMenuShow(!isHamnurgerMenuShow)
+    setIsHamburgerMenuShow(!isHamburgerMenuShow);
+    setMainContentShow(!mainContentShow);
+    }
+
+    const hamburgerMenuDivClick = () =>{
+    setIsHamburgerOpen(false);
+    setIsHamburgerMenuShow(false);
+    setMainContentShow(true);
     }
 
     return (
@@ -31,21 +41,21 @@ const Header = () => {
 
         {/* Navbar section */}
 
-        {isHamnurgerMenuShow ? (
+        {isHamburgerMenuShow ? (
         <div className="navbar">
-            <Link to="/" className="hamburgerMenuList" onClick={()=>{setIsHamnurgerMenuShow(false);setIsHamburgerOpen(false);}}>
+            <Link to="/" className="hamburgerMenuList" onClick={hamburgerMenuDivClick}>
             <AiFillHome/>
             <h1>Home</h1>
             </Link>
-            <Link to="/cart" className="hamburgerMenuList" onClick={()=>{setIsHamnurgerMenuShow(false);setIsHamburgerOpen(false);}}>
+            <Link to="/cart" className="hamburgerMenuList" onClick={hamburgerMenuDivClick}>
             <FaShoppingCart/>
             <h1>Cart</h1>
             </Link>
-            <Link to="/bills" className="hamburgerMenuList" onClick={()=>{setIsHamnurgerMenuShow(false);setIsHamburgerOpen(false);}}>
+            <Link to="/bills" className="hamburgerMenuList" onClick={hamburgerMenuDivClick}>
             <RiBillLine/>
             <h1>Bills</h1>
             </Link>
-            <Link to="/logout" className="hamburgerMenuList" onClick={()=>{setIsHamnurgerMenuShow(false);setIsHamburgerOpen(false);}}>
+            <Link to="/logout" className="hamburgerMenuList" onClick={hamburgerMenuDivClick}>
             <AiOutlineLogout/>
             <h1>Log out</h1>
             </Link>
