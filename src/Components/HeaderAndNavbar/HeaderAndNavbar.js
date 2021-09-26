@@ -1,14 +1,19 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {ValuesContext} from '../../App';
 import {GiHamburgerMenu} from 'react-icons/gi';
 import {AiOutlineClose, AiFillHome, AiOutlineLogout} from 'react-icons/ai';
 import {FaShoppingCart} from 'react-icons/fa';
 import {RiBillLine} from 'react-icons/ri';
 import {Link, useHistory} from 'react-router-dom';
+import {toast} from 'react-toastify';
 import {auth} from '../../firebase';
 import "./HeaderAndNavbar.css";
 
+toast.configure();
+
 const Header = () => {
+
+    const [isSmallScreen, setIsSmallScreen] = useState(true);
 
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
@@ -34,10 +39,34 @@ const Header = () => {
     auth.signOut(); 
     history.push("/");
     setMainContentShow(true);
+    toast.success("Logged out successfully !!", {position: toast.POSITION.TOP_CENTER})
     }
+
+    const checkSize = () =>{
+        if(window.innerWidth < 768){
+            setIsSmallScreen(true);
+        }
+        else{
+            setIsSmallScreen(false);
+        }
+    }
+
+    useEffect(()=>{
+        checkSize();
+        window.addEventListener('resize', checkSize);
+        return()=>{
+        window.addEventListener('resize', checkSize);
+        }
+    },[])
 
     return (
         <>
+
+        {isSmallScreen ? (
+
+        <>
+        
+        {/* For screen size less than 768 px */}
 
         {/* Header section */}
 
@@ -72,6 +101,24 @@ const Header = () => {
         )
         :
         ""
+        }
+        </> 
+        ) 
+        : 
+        (
+        <>
+        {/* For screen size >= 768 px */}
+        <div className="navbar1">
+        <h1 className="header1">Food Dunzo</h1>
+        <div className="navbarDiv">
+        <Link to="/" className="navbarMenus"><AiFillHome/><h1>Home</h1></Link>
+        <Link to="/cart" className="navbarMenus"><FaShoppingCart/><h1>Cart</h1></Link>
+        <Link to="/bills" className="navbarMenus"><RiBillLine/><h1>Bills</h1></Link>
+        <div className="navbarMenus" onClick={logout}><AiOutlineLogout/><h1>Log Out</h1></div>
+        </div>
+        </div>
+        </>
+        )
         }
 
         </>

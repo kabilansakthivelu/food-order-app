@@ -1,3 +1,6 @@
+
+/* For screen size less than 768 px */
+
 .header{
     @apply flex justify-between items-center w-full h-14 bg-red-500
 }
@@ -12,4 +15,19 @@
 }
 .hamburgerMenuList{
     @apply flex items-center mx-4 py-4 text-xl space-x-3 border-b-2
+}
+
+/* For screen size >= 768 px */
+
+.navbar1{
+    @apply md:w-2/12 lg:w-1/7 h-screen text-center
+}
+.header1{
+    @apply font-bold text-xl xl:text-2xl text-red-500 mt-6 italic
+}
+.navbarDiv{
+    @apply mt-16 xl:mt-28 lg:mt-20 flex flex-col items-center space-y-2
+}
+.navbarMenus{
+    @apply flex flex-col items-center justify-center space-y-1 lg:text-xl border-2 border-white h-24 w-24 rounded-2xl text-gray-500
 }

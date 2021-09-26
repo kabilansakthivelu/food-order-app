@@ -14,7 +14,7 @@ const Cart = () => {
     return (
         <div>
             {user ? (
-            <>
+            <div className="content">
             <HeaderAndNavbar/>
             {mainContentShow ? (
             <div>
@@ -24,7 +24,7 @@ const Cart = () => {
             :
             ""
         }
-        </>)
+        </div>)
         :
         <SignIn/>}
         </div>

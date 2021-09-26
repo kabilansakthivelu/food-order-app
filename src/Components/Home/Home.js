@@ -14,11 +14,12 @@ const Home = () => {
     return (
         <div>
            {user ? (
-           <>
+           <div className="content">
            <HeaderAndNavbar/>
            {mainContentShow ? (
-           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, error.</p> ) : "" }
-           </>
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, error.</p> 
+           ) : "" }
+           </div>
            ) 
            : 
            <SignIn/>
