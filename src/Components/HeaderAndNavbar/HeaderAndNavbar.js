@@ -4,7 +4,8 @@ import {GiHamburgerMenu} from 'react-icons/gi';
 import {AiOutlineClose, AiFillHome, AiOutlineLogout} from 'react-icons/ai';
 import {FaShoppingCart} from 'react-icons/fa';
 import {RiBillLine} from 'react-icons/ri';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import {auth} from '../../firebase';
 import "./HeaderAndNavbar.css";
 
 const Header = () => {
@@ -13,17 +14,25 @@ const Header = () => {
 
     const [isHamburgerMenuShow, setIsHamburgerMenuShow] = useState(false);
 
-    const {mainContentShow, setMainContentShow} = useContext(ValuesContext);
+    const {setMainContentShow} = useContext(ValuesContext);
 
     const hamburgerIconClick = () =>{
     setIsHamburgerOpen(!isHamburgerOpen);
     setIsHamburgerMenuShow(!isHamburgerMenuShow);
-    setMainContentShow(!mainContentShow);
+    setMainContentShow(false);
     }
 
     const hamburgerMenuDivClick = () =>{
     setIsHamburgerOpen(false);
     setIsHamburgerMenuShow(false);
+    setMainContentShow(true);
+    }
+
+    const history = useHistory();
+
+    const logout = () =>{
+    auth.signOut(); 
+    history.push("/");
     setMainContentShow(true);
     }
 
@@ -55,10 +64,10 @@ const Header = () => {
             <RiBillLine/>
             <h1>Bills</h1>
             </Link>
-            <Link to="/logout" className="hamburgerMenuList" onClick={hamburgerMenuDivClick}>
+            <div className="hamburgerMenuList" onClick={logout}>
             <AiOutlineLogout/>
             <h1>Log out</h1>
-            </Link>
+            </div>
         </div>
         )
         :

@@ -5,7 +5,6 @@ import SignIn from './Components/SignIn/SignIn';
 import Home from './Components/Home/Home';
 import Cart from './Components/Cart/Cart';
 import Bills from './Components/Bills/Bills';
-import SignOut from './Components/SignOut/SignOut';
 import Error from './Components/Error';
 
 export const ValuesContext = React.createContext();
@@ -34,9 +33,6 @@ function App() {
         </Route>
         <Route path="/bills">
           <Bills/>
-        </Route>
-        <Route path="/signout">
-          <SignOut/>
         </Route>
         <Route path="*">
           <Error/>
