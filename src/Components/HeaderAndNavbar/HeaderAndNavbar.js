@@ -54,10 +54,36 @@ const Header = () => {
     useEffect(()=>{
         checkSize();
         window.addEventListener('resize', checkSize);
+        
         return()=>{
-        window.addEventListener('resize', checkSize);
+        window.removeEventListener('resize', checkSize);
         }
     },[])
+
+    const navbar = [
+        {
+            to:"/",
+            id:"home",
+            name:"Home",
+        },{
+            to:"/cart",
+            id:"cart",
+            name:"Cart",
+        },{
+            to:"/bills",
+            id:"bills",
+            name:"Bills",
+        }
+    ]
+    
+    let activeTab1 = window.location.pathname;
+    let activeTab2 = activeTab1.split("/");
+    let activeTab;
+    if(activeTab2[1] === ""){
+        activeTab = "home";
+    }else{
+        activeTab = activeTab2[1];
+    }
 
     return (
         <>
@@ -111,10 +137,30 @@ const Header = () => {
         <div className="navbar1">
         <h1 className="header1">Food Dunzo</h1>
         <div className="navbarDiv">
-        <Link to="/" className="navbarMenus"><AiFillHome/><h1>Home</h1></Link>
-        <Link to="/cart" className="navbarMenus"><FaShoppingCart/><h1>Cart</h1></Link>
-        <Link to="/bills" className="navbarMenus"><RiBillLine/><h1>Bills</h1></Link>
-        <div className="navbarMenus" onClick={logout}><AiOutlineLogout/><h1>Log Out</h1></div>
+        {navbar.map((menu)=>{
+            let abc = "";
+            if(menu.id === "home"){
+                 abc = <AiFillHome/>
+            }else if(menu.id === "cart"){
+                abc = <FaShoppingCart/>
+            }else{
+                abc = <RiBillLine/>
+            }
+
+            let name = "";
+            if(menu.id === activeTab){
+                name = "navbarMenuActive";
+            }else{
+                name = "navbarMenus";
+            }
+
+            return(
+            <Link to={menu.to} key={menu.id} id={menu.id} className={name}>
+            {abc}
+            <h1>{menu.name}</h1>
+            </Link>
+        )})}
+        <div className="navbarMenus" id="logout" onClick={logout}><AiOutlineLogout/><h1>Log Out</h1></div>
         </div>
         </div>
         </>

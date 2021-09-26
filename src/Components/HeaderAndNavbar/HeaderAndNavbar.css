@@ -29,5 +29,8 @@
     @apply mt-16 xl:mt-28 lg:mt-20 flex flex-col items-center space-y-2
 }
 .navbarMenus{
-    @apply flex flex-col items-center justify-center space-y-1 lg:text-xl border-2 border-white h-24 w-24 rounded-2xl text-gray-500
+    @apply flex flex-col items-center justify-center space-y-1 lg:text-xl border-2 border-white h-24 w-24 rounded-2xl text-gray-500 cursor-pointer active:bg-red-500 active:text-white
+}
+.navbarMenuActive{
+    @apply flex flex-col items-center justify-center space-y-1 lg:text-xl border-2 border-white h-24 w-24 rounded-2xl text-white cursor-pointer bg-red-500
 }
