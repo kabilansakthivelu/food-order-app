@@ -1,3 +1,15 @@
 .content{
     @apply md:flex
 }
+.cartArea{
+    @apply md:bg-gray-100 w-screen p-3 md:p-6
+}
+.sectionTitle{
+    @apply font-bold text-xl
+}
+.cartDefaultDescription{
+    @apply text-center mt-10 md:mt-60 text-xl md:text-2xl font-bold
+}
+.cartsItem{
+    @apply flex justify-center items-center space-x-2 leading-9
+}

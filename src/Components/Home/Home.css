@@ -44,16 +44,13 @@ content {
     @apply flex items-center justify-center text-gray-500 my-2
 }
 .addButton{
-    @apply border-2 rounded-xl w-20 md:w-24 md:h-8 bg-red-500 text-white mx-auto
+    @apply border-2 rounded-xl w-20 md:w-24 md:h-8 border-red-500 bg-red-500 text-white mx-auto
 }
 .cartCounter{
-    @apply flex items-center justify-between border-2 rounded-xl w-20 md:w-24 md:h-8 bg-red-500 text-white px-2 mx-auto
-}
-.indCartCounter{
-    @apply hidden
+    @apply flex items-center justify-between border-2 rounded-xl w-20 md:w-24 md:h-8 border-red-500 bg-red-500 text-white px-2 mx-auto
 }
 .toCartPage{
-    @apply hidden border-2 bg-red-500 text-white w-24 h-12 md:w-60 md:h-16 rounded-3xl fixed right-2 md:right-6 bottom-4 md:text-xl
+    @apply border-2 bg-red-500 text-white hover:bg-white hover:border-red-500 hover:text-red-500 w-24 h-12 md:w-60 md:h-16 rounded-3xl fixed right-2 md:right-6 bottom-4 md:text-xl
 }
 .counterIcon{
     @apply cursor-pointer

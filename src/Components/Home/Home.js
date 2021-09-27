@@ -21,6 +21,8 @@ const Home = () => {
 
     const [foodItemsArray, setFoodItemsArray] = useState();
 
+    const [cartValues, setCartValues] = useState(0);
+
     useEffect(()=>{
     db.collection('food').get().then((snapshot)=>{  
         const arr = [];
@@ -28,8 +30,18 @@ const Home = () => {
             arr.push(doc.data())
     })
     setCategories(arr);
-    })                                        
-    },[])
+    })
+    if(user){
+        const test = db.collection('cart').doc(auth.currentUser.uid).collection('items');
+        test.onSnapshot((snapshot)=>{
+            const arr = [];
+            snapshot.forEach((doc)=>{
+                const test1 = doc.data();
+                arr.push(test1);
+            })
+        setCartValues(arr);
+        })}                                  
+    },[user])
 
     const categorySelected = (id, name) =>{
 
@@ -45,10 +57,9 @@ const Home = () => {
     }
 
     const itemAddBtn = (id, name, price, number) =>{
-        document.getElementById(id).style.display = "none";
-        document.getElementById(price).style.display = "block";
-        let number1 = 0
+        let number1 = 0;
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
+            id,
             name,
             price,
             quantity: number1+1,
@@ -63,6 +74,7 @@ const Home = () => {
         let number1 = document.getElementById(number).innerHTML;
         let number2 = parseInt(number1);
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
+            id,
             name,
             price,
             quantity: number2+1,
@@ -78,10 +90,9 @@ const Home = () => {
         let number2 = parseInt(number1);
         if(number2-1 === 0){
             db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).delete();
-            document.getElementById(id).style.display = "block";
-            document.getElementById(price).style.display = "none";
         }else{
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
+            id,
             name,
             price,
             quantity: number2-1,
@@ -143,6 +154,9 @@ const Home = () => {
            <>
            <div className="foodItemsSection">
            {foodItemsArray.map((item)=>{
+               const alreadyAddedToCart = cartValues.find((food)=>{
+                   return food.id === item.id;
+               })
                return(
                    <div key={item.id} className="individualFoodItem">
                     <img src={item.imageURL} alt="" className="itemImage" />
@@ -152,22 +166,25 @@ const Home = () => {
                     <h1>{item.price}</h1>
                     </div>
                     
-                    <button id={item.id} className="addButton" onClick={()=>{itemAddBtn(item.id, item.name, item.price, item.number)}}>Add</button>
-                    
+                    {alreadyAddedToCart ? (
                     <div id={item.price} className="indCartCounter">
                     <div className="cartCounter">
                     <AiOutlineMinus className="counterIcon" onClick={()=>{minusBtn(item.id, item.name, item.price, item.number)}}/>
-                    <h1 id={item.number}></h1>
+                    <p id={item.number}>{alreadyAddedToCart.quantity}</p>
                     <AiOutlinePlus className="counterIcon" onClick={()=>{plusBtn(item.id, item.name, item.price, item.number)}}/>
                     </div>
                     </div>
+                    )
+                    :
+                    <button id={item.id} className="addButton" onClick={()=>{itemAddBtn(item.id, item.name, item.price, item.number)}}>Add</button>
+                    }
                    </div>
                )
            })}
            </div>
            </>
            ) : <h1 className="itemsDefaultDescription">Select a category from the above list to order your favorite items</h1>}
-           <Link to="/cart"><button id="toCartPage" className="toCartPage">View Cart</button></Link>
+           {(cartValues.length > 0) ? (<Link to="/cart"><button id="toCartPage" className="toCartPage">View Cart</button></Link>) : ""}
            </div>
            ) : "" }
            </div>

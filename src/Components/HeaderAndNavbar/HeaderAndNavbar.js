@@ -37,7 +37,7 @@ const Header = () => {
 
     const logout = () =>{
     auth.signOut(); 
-    history.push("/");
+    history.push("/signin");
     setMainContentShow(true);
     toast.success("Logged out successfully !!", {position: toast.POSITION.TOP_CENTER})
     }
