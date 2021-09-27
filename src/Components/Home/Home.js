@@ -47,12 +47,11 @@ const Home = () => {
     const itemAddBtn = (id, name, price, number) =>{
         document.getElementById(id).style.display = "none";
         document.getElementById(price).style.display = "block";
-        let number1 = document.getElementById(number).innerHTML;
-        let number2 = parseInt(number1);
+        let number1 = 0
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
             name,
             price,
-            quantity: number2+1,
+            quantity: number1+1,
         })
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).get().then((snapshot)=>{
             const itemDetails = snapshot.data();
@@ -77,6 +76,11 @@ const Home = () => {
      const minusBtn = (id, name, price, number) =>{
         let number1 = document.getElementById(number).innerHTML;
         let number2 = parseInt(number1);
+        if(number2-1 === 0){
+            db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).delete();
+            document.getElementById(id).style.display = "block";
+            document.getElementById(price).style.display = "none";
+        }else{
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
             name,
             price,
@@ -86,6 +90,7 @@ const Home = () => {
             const itemDetails = snapshot.data();
             document.getElementById(number).innerHTML = itemDetails.quantity;
         })
+        }
     }
 
     return (               
@@ -152,7 +157,7 @@ const Home = () => {
                     <div id={item.price} className="indCartCounter">
                     <div className="cartCounter">
                     <AiOutlineMinus className="counterIcon" onClick={()=>{minusBtn(item.id, item.name, item.price, item.number)}}/>
-                    <h1 id={item.number}>0</h1>
+                    <h1 id={item.number}></h1>
                     <AiOutlinePlus className="counterIcon" onClick={()=>{plusBtn(item.id, item.name, item.price, item.number)}}/>
                     </div>
                     </div>

@@ -44,7 +44,7 @@ content {
     @apply flex items-center justify-center text-gray-500 my-2
 }
 .addButton{
-    @apply border-2 rounded-xl w-20 md:w-24 md:h-8 bg-red-500 text-white
+    @apply border-2 rounded-xl w-20 md:w-24 md:h-8 bg-red-500 text-white mx-auto
 }
 .cartCounter{
     @apply flex items-center justify-between border-2 rounded-xl w-20 md:w-24 md:h-8 bg-red-500 text-white px-2 mx-auto
