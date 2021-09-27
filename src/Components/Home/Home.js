@@ -6,6 +6,7 @@ import SignIn from '../SignIn/SignIn';
 import HeaderAndNavbar from '../HeaderAndNavbar/HeaderAndNavbar';
 import {FaPizzaSlice, FaHamburger, FaIceCream, FaCoffee} from 'react-icons/fa';
 import {GiSandwich, GiManualJuicer, GiChocolateBar} from 'react-icons/gi';
+import {BiRupee} from 'react-icons/bi';
 import './Home.css';
 
 const Home = () => {
@@ -24,15 +25,16 @@ const Home = () => {
             arr.push(doc.data())
     })
     setCategories(arr);
-    })                            
+    })                                         
     },[])
 
     const categorySelected = (id, name) =>{
-        // document.getElementById(id).style.backgroundColor = "yellow";
+
+        // document.getElementById(id).style.backgroundColor = "blue";
         const itemsRef = db.collection('food').doc(name).collection('foodItems');
         itemsRef.onSnapshot((snapshot)=>{
             let arr = [];
-            snapshot.forEach((doc)=>{
+            snapshot.forEach((doc)=>{      
                 arr.push(doc.data())
             })
             setFoodItemsArray(arr);
@@ -40,7 +42,7 @@ const Home = () => {
     }
 
     return (               
-        <div>                                                                                                                  
+        <div>                           
            {user ? (
            <div className="content">
            <HeaderAndNavbar/>
@@ -87,14 +89,21 @@ const Home = () => {
            <p className="foodItemsTitle">Food Items</p>
            {foodItemsArray ? (
            <>
+           <div className="foodItemsSection">
            {foodItemsArray.map((item)=>{
                return(
-                   <div key={item.id}>
-                    <img src={item.imageURL} alt="" />
-                    <h1>{item.name}</h1>
+                   <div key={item.id} className="individualFoodItem">
+                    <img src={item.imageURL} alt="" className="itemImage" />
+                    <h1 className="itemName">{item.name}</h1>
+                    <div className="currAndPriceAlignment">
+                    <BiRupee/>
+                    <h1>{item.price}</h1>
+                    </div>
+                    <button className="addButton">Add</button>
                    </div>
                )
            })}
+           </div>
            </>
            ) : <h1 className="itemsDefaultDescription">Select a category from the above list to order your favorite items</h1>}
            </div>
