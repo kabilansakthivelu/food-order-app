@@ -7,9 +7,13 @@ import HeaderAndNavbar from '../HeaderAndNavbar/HeaderAndNavbar';
 import {FaPizzaSlice, FaHamburger, FaIceCream, FaCoffee} from 'react-icons/fa';
 import {GiSandwich, GiManualJuicer, GiChocolateBar} from 'react-icons/gi';
 import {BiRupee} from 'react-icons/bi';
+import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
+import {Link} from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
+
+    let itemCounter = 0;
 
     const [user] = useAuthState(auth);
     const {mainContentShow} = useContext(ValuesContext);
@@ -25,7 +29,7 @@ const Home = () => {
             arr.push(doc.data())
     })
     setCategories(arr);
-    })                                         
+    })                                        
     },[])
 
     const categorySelected = (id, name) =>{
@@ -39,6 +43,12 @@ const Home = () => {
             })
             setFoodItemsArray(arr);
         })
+    }
+
+    const itemAddBtn = (id, name, price) =>{
+        document.getElementById(id).style.display = "none";
+        document.getElementById(price).style.display = "block";
+        itemCounter = 1;
     }
 
     return (               
@@ -99,13 +109,23 @@ const Home = () => {
                     <BiRupee/>
                     <h1>{item.price}</h1>
                     </div>
-                    <button className="addButton">Add</button>
+                    
+                    <button id={item.id} className="addButton" onClick={()=>{itemAddBtn(item.id, item.name, item.price)}}>Add</button>
+                    
+                    <div id={item.price} className="indCartCounter">
+                    <div className="cartCounter">
+                    <AiOutlineMinus/>
+                    {itemCounter}
+                    <AiOutlinePlus/>
+                    </div>
+                    </div>
                    </div>
                )
            })}
            </div>
            </>
            ) : <h1 className="itemsDefaultDescription">Select a category from the above list to order your favorite items</h1>}
+           <Link to="/cart"><button id="toCartPage" className="toCartPage">View Cart</button></Link>
            </div>
            ) : "" }
            </div>
