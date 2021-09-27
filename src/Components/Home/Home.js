@@ -13,9 +13,8 @@ import './Home.css';
 
 const Home = () => {
 
-    let itemCounter = 0;
-
     const [user] = useAuthState(auth);
+
     const {mainContentShow} = useContext(ValuesContext);
 
     const [categories, setCategories] = useState([]);
@@ -45,10 +44,48 @@ const Home = () => {
         })
     }
 
-    const itemAddBtn = (id, name, price) =>{
+    const itemAddBtn = (id, name, price, number) =>{
         document.getElementById(id).style.display = "none";
         document.getElementById(price).style.display = "block";
-        itemCounter = 1;
+        let number1 = document.getElementById(number).innerHTML;
+        let number2 = parseInt(number1);
+        db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
+            name,
+            price,
+            quantity: number2+1,
+        })
+        db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).get().then((snapshot)=>{
+            const itemDetails = snapshot.data();
+            document.getElementById(number).innerHTML = itemDetails.quantity;
+        })
+    }
+
+    const plusBtn = (id, name, price, number) =>{
+        let number1 = document.getElementById(number).innerHTML;
+        let number2 = parseInt(number1);
+        db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
+            name,
+            price,
+            quantity: number2+1,
+        })
+        db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).get().then((snapshot)=>{
+            const itemDetails = snapshot.data();
+            document.getElementById(number).innerHTML = itemDetails.quantity;
+        })
+    }
+
+     const minusBtn = (id, name, price, number) =>{
+        let number1 = document.getElementById(number).innerHTML;
+        let number2 = parseInt(number1);
+        db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
+            name,
+            price,
+            quantity: number2-1,
+        })
+        db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).get().then((snapshot)=>{
+            const itemDetails = snapshot.data();
+            document.getElementById(number).innerHTML = itemDetails.quantity;
+        })
     }
 
     return (               
@@ -110,13 +147,13 @@ const Home = () => {
                     <h1>{item.price}</h1>
                     </div>
                     
-                    <button id={item.id} className="addButton" onClick={()=>{itemAddBtn(item.id, item.name, item.price)}}>Add</button>
+                    <button id={item.id} className="addButton" onClick={()=>{itemAddBtn(item.id, item.name, item.price, item.number)}}>Add</button>
                     
                     <div id={item.price} className="indCartCounter">
                     <div className="cartCounter">
-                    <AiOutlineMinus/>
-                    {itemCounter}
-                    <AiOutlinePlus/>
+                    <AiOutlineMinus className="counterIcon" onClick={()=>{minusBtn(item.id, item.name, item.price, item.number)}}/>
+                    <h1 id={item.number}>0</h1>
+                    <AiOutlinePlus className="counterIcon" onClick={()=>{plusBtn(item.id, item.name, item.price, item.number)}}/>
                     </div>
                     </div>
                    </div>

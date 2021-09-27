@@ -38,7 +38,7 @@ content {
     @apply rounded-full w-24 h-24 lg:w-32 lg:h-32 mx-auto
 }
 .itemName{
-    @apply font-bold mt-4
+    @apply font-bold mt-4 text-sm lg:text-base
 }
 .currAndPriceAlignment{
     @apply flex items-center justify-center text-gray-500 my-2
@@ -54,4 +54,7 @@ content {
 }
 .toCartPage{
     @apply hidden border-2 bg-red-500 text-white w-24 h-12 md:w-60 md:h-16 rounded-3xl fixed right-2 md:right-6 bottom-4 md:text-xl
+}
+.counterIcon{
+    @apply cursor-pointer
 }
