@@ -134,7 +134,7 @@ const Cart = () => {
 
                 {/* Checkout Modal */}
 
-                <Modal isOpen={isCheckOutModal} onRequestClose={()=>{setIsCheckOutModal(false)}} className="checkoutModal">
+                <Modal isOpen={isCheckOutModal} className="checkoutModal">
 
                 <h1 className="modalTitle">Please provide your address</h1>
 
@@ -158,12 +158,11 @@ const Cart = () => {
                     <div className="modalFields">
                     <label htmlFor="phone">Phone No: &nbsp;</label>
                     <input required type="number" id="phone" name="phone" className="modalInputFields"/>
-
-                    <div className="cartPageBtn">
-                    <button className="cartPageIndividualBtn" >Place Order</button>
-                    <button className="cartPageIndividualBtn" onClick={()=>{setIsCheckOutModal(false)}}>Cancel</button>
                     </div>
 
+                    <div className="modalBtn">
+                    <button className="modalIndividualBtn" >Place Order</button>
+                    <button className="modalIndividualBtn" onClick={()=>{setIsCheckOutModal(false)}}>Cancel</button>
                     </div>
 
                 </form>

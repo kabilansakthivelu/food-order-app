@@ -32,13 +32,13 @@
     @apply flex flex-col md:flex-row space-y-2 md:space-y-0 items-center justify-center mt-10 md:space-x-6
 }
 .cartPageIndividualBtn{
-    @apply border-2 border-red-500 bg-red-500 text-white font-bold hover:bg-white hover:text-red-500 rounded-xl w-32 h-8 text-center cursor-pointer
+    @apply border-2 border-red-500 bg-red-500 text-white hover:bg-white hover:text-red-500 rounded-xl w-32 h-9 text-center cursor-pointer pt-1
 }
 .totalAmountFinal{
     @apply flex items-center justify-center mt-10 font-bold text-xl
 }
 .checkoutModal{
-    @apply m-5 md:mx-auto md:w-6/12 rounded-xl border-2 border-black mt-16 md:mt-44 p-3 md:p-6 outline-none bg-gray-200
+    @apply m-5 md:mx-auto md:w-6/12 rounded-xl border-2 border-black mt-28 md:mt-44 p-3 md:p-6 outline-none bg-gray-200
 }
 .modalTitle{
     @apply font-bold text-center my-6 md:text-xl
@@ -47,5 +47,11 @@
     @apply flex flex-col space-y-1 md:space-y-0 md:flex-row mb-4 md:items-center md:justify-center
 }
 .modalInputFields{
-    @apply rounded-lg h-8 w-full md:w-5/12 overflow-ellipsis pl-4
+    @apply rounded-lg h-8 w-full md:w-7/12 overflow-ellipsis pl-4
+}
+.modalBtn{
+    @apply flex flex-col md:flex-row space-y-2 md:space-y-0 items-center justify-center pt-7 md:ml-12 lg:ml-16
+}
+.modalIndividualBtn{
+    @apply border-2 border-red-500 bg-red-500 text-white hover:bg-white hover:text-red-500 rounded-xl w-32 h-8 text-center cursor-pointer md:mr-2
 }
