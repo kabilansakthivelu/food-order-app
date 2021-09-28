@@ -4,12 +4,36 @@
 .cartArea{
     @apply md:bg-gray-100 w-screen p-3 md:p-6
 }
-.sectionTitle{
-    @apply font-bold text-xl
+.sectionCartTitle{
+    @apply font-bold text-xl mb-10 md:mb-20
 }
 .cartDefaultDescription{
     @apply text-center mt-10 md:mt-60 text-xl md:text-2xl font-bold
 }
-.cartsItem{
-    @apply flex justify-center items-center space-x-2 leading-9
+.individualCartsItem{
+    @apply flex flex-col p-3 border-2 w-11/12 md:w-9/12 lg:w-6/12 mx-auto border-gray-400 rounded-xl space-y-3 shadow-lg
+}
+.cartFirstLine{
+    @apply flex items-center justify-between
+}
+.cartSecondLine{
+    @apply flex items-center justify-between
+}
+.cartItemName{
+    @apply font-bold
+}
+.cartRupeesAlignment{
+    @apply flex items-center
+}
+.cartsCounterIcons{
+    @apply border-2 border-red-500 bg-red-500 text-white rounded-xl cursor-pointer
+}
+.cartPageBtn{
+    @apply flex flex-col md:flex-row space-y-2 md:space-y-0 items-center justify-center mt-10 md:space-x-6
+}
+.cartPageIndividualBtn{
+    @apply border-2 border-red-500 bg-red-500 text-white font-bold hover:bg-white hover:text-red-500 rounded-xl w-32 h-8 text-center cursor-pointer
+}
+.totalAmountFinal{
+    @apply flex items-center justify-center mt-10 font-bold text-xl
 }

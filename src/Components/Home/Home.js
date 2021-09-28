@@ -63,6 +63,7 @@ const Home = () => {
             name,
             price,
             quantity: number1+1,
+            totalAmount : (price*(number1+1)),
         })
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).get().then((snapshot)=>{
             const itemDetails = snapshot.data();
@@ -78,6 +79,7 @@ const Home = () => {
             name,
             price,
             quantity: number2+1,
+            totalAmount : (price*(number2+1)),
         })
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).get().then((snapshot)=>{
             const itemDetails = snapshot.data();
@@ -96,6 +98,7 @@ const Home = () => {
             name,
             price,
             quantity: number2-1,
+            totalAmount : (price*(number2-1)),
         })
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).get().then((snapshot)=>{
             const itemDetails = snapshot.data();
