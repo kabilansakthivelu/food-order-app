@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useRef} from 'react';
 import {auth, db} from '../../firebase';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import SignIn from '../SignIn/SignIn';
@@ -19,6 +19,10 @@ const Cart = () => {
     const [itemsInCart, setItemsInCart] = useState([]);
     const [finalTotal, setFinalTotal] = useState(0);
     const [isCheckOutModal, setIsCheckOutModal] = useState(false);
+    const refAddress1 = useRef();
+    const refAddress2 = useRef();
+    const refCity = useRef();
+    const refPhone = useRef();
 
     useEffect(()=>{
         if(user){
@@ -92,10 +96,40 @@ const Cart = () => {
             setIsCheckOutModal(true);
         }
 
-        const orderPlacement = (e) =>{
+         const orderPlacement = async(e) =>{
             e.preventDefault();
-            setIsCheckOutModal(false);
-            toast.success("Order placed successfully, Tasty food is en route" , {position: toast.POSITION.TOP_CENTER});
+            const time = (new Date()).getTime().toString();
+            const address1 = refAddress1.current.value;
+            const address2 = refAddress2.current.value;
+            const city = refCity.current.value;
+            const phone = refPhone.current.value;
+            if((address1[0] === " ") || (address2[0] === " ") || (city[0] === " ")){
+                toast.error("Please don't start with 'SPACE'. Enter a valid username.", {position: toast.POSITION.TOP_CENTER});
+            }
+            else
+            {   
+                const test = db.collection('cart').doc(auth.currentUser.uid).collection('items');
+                test.get().then((snapshot)=>{
+                const arr = [];
+                snapshot.forEach((doc)=>{
+                const item = doc.data();
+                arr.push(item);
+                })
+                db.collection('bills').doc(auth.currentUser.uid).collection('billsCollection').doc(time).set({
+                    foodItems: arr,
+                    time,
+                    address1,
+                    address2,
+                    city,
+                    phone,
+                    total: finalTotal,
+                    id: time,
+                });
+                })
+                cartClear();
+                setIsCheckOutModal(false);
+                toast.success("Your order is placed successfully, Tasty food is en route.", {position: toast.POSITION.TOP_CENTER});
+            }
         }
 
 
@@ -142,22 +176,22 @@ const Cart = () => {
 
                     <div className="modalFields">
                     <label htmlFor="address1">Address 1: &nbsp;</label>
-                    <input required type="text" id="address1" name="address1" className="modalInputFields"/>
+                    <input required ref={refAddress1} type="text" id="address1" name="address1" className="modalInputFields"/>
                     </div>
 
                     <div className="modalFields">
                     <label htmlFor="address2">Address 2: &nbsp;</label>
-                    <input required type="text" id="address2" name="address1" className="modalInputFields"/>
+                    <input required ref={refAddress2} type="text" id="address2" name="address1" className="modalInputFields"/>
                     </div>
 
                     <div className="modalFields">
                     <label htmlFor="city">City/Town: &nbsp;</label>
-                    <input required type="text" id="city" name="city" className="modalInputFields"/>
+                    <input required ref={refCity} type="text" id="city" name="city" className="modalInputFields"/>
                     </div>
 
                     <div className="modalFields">
                     <label htmlFor="phone">Phone No: &nbsp;</label>
-                    <input required type="number" id="phone" name="phone" className="modalInputFields"/>
+                    <input required ref={refPhone} type="number" id="phone" name="phone" className="modalInputFields"/>
                     </div>
 
                     <div className="modalBtn">
