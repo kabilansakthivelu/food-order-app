@@ -6,8 +6,11 @@ import Home from './Components/Home/Home';
 import Cart from './Components/Cart/Cart';
 import Bills from './Components/Bills/Bills';
 import Error from './Components/Error';
+import Modal from 'react-modal';
 
 export const ValuesContext = React.createContext();
+
+Modal.setAppElement('#root');
 
 function App() {
 

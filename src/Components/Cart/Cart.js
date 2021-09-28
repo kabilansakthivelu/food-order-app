@@ -6,7 +6,11 @@ import {ValuesContext} from '../../App';
 import HeaderAndNavbar from '../HeaderAndNavbar/HeaderAndNavbar';
 import {BiRupee} from 'react-icons/bi';
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
+import Modal from 'react-modal';
+import {toast} from 'react-toastify';
 import './Cart.css';
+
+toast.configure();
 
 const Cart = () => {
 
@@ -14,6 +18,7 @@ const Cart = () => {
     const {mainContentShow} = useContext(ValuesContext);
     const [itemsInCart, setItemsInCart] = useState([]);
     const [finalTotal, setFinalTotal] = useState(0);
+    const [isCheckOutModal, setIsCheckOutModal] = useState(false);
 
     useEffect(()=>{
         if(user){
@@ -83,6 +88,16 @@ const Cart = () => {
         })
         }
 
+        const checkOutFn = () =>{
+            setIsCheckOutModal(true);
+        }
+
+        const orderPlacement = (e) =>{
+            e.preventDefault();
+            setIsCheckOutModal(false);
+            toast.success("Order placed successfully, Tasty food is en route" , {position: toast.POSITION.TOP_CENTER});
+        }
+
 
     return (
         <div>
@@ -113,9 +128,48 @@ const Cart = () => {
                 })}
                 <h1 className="totalAmountFinal">Total amount: <BiRupee/>&nbsp;{finalTotal}</h1>
                 <div className="cartPageBtn">
-                <h1 className="cartPageIndividualBtn">Checkout</h1>
+                <h1 className="cartPageIndividualBtn" onClick={checkOutFn}>Checkout</h1>
                 <h1 className="cartPageIndividualBtn" onClick={cartClear}>Clear cart</h1>
                 </div>
+
+                {/* Checkout Modal */}
+
+                <Modal isOpen={isCheckOutModal} onRequestClose={()=>{setIsCheckOutModal(false)}} className="checkoutModal">
+
+                <h1 className="modalTitle">Please provide your address</h1>
+
+                <form onSubmit={orderPlacement}>
+
+                    <div className="modalFields">
+                    <label htmlFor="address1">Address 1: &nbsp;</label>
+                    <input required type="text" id="address1" name="address1" className="modalInputFields"/>
+                    </div>
+
+                    <div className="modalFields">
+                    <label htmlFor="address2">Address 2: &nbsp;</label>
+                    <input required type="text" id="address2" name="address1" className="modalInputFields"/>
+                    </div>
+
+                    <div className="modalFields">
+                    <label htmlFor="city">City/Town: &nbsp;</label>
+                    <input required type="text" id="city" name="city" className="modalInputFields"/>
+                    </div>
+
+                    <div className="modalFields">
+                    <label htmlFor="phone">Phone No: &nbsp;</label>
+                    <input required type="number" id="phone" name="phone" className="modalInputFields"/>
+
+                    <div className="cartPageBtn">
+                    <button className="cartPageIndividualBtn" >Place Order</button>
+                    <button className="cartPageIndividualBtn" onClick={()=>{setIsCheckOutModal(false)}}>Cancel</button>
+                    </div>
+
+                    </div>
+
+                </form>
+
+                </Modal>
+
             </div>)
             :
             (<h1 className="cartDefaultDescription">
