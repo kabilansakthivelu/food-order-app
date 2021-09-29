@@ -44,8 +44,12 @@ const Home = () => {
     },[user])
 
     const categorySelected = (id, name) =>{
-
-        // document.getElementById(id).style.backgroundColor = "blue";
+        for(let i=1;i<=7;i++){
+            document.getElementById(i).style.backgroundColor = "white";
+            document.getElementById(i).style.color = "black";
+        }
+        document.getElementById(id).style.backgroundColor = "rgba(239, 68, 68, 0.95)";
+        document.getElementById(id).style.color = "white";
         const itemsRef = db.collection('food').doc(name).collection('foodItems');
         itemsRef.onSnapshot((snapshot)=>{
             let arr = [];
@@ -144,7 +148,7 @@ const Home = () => {
                         
                 }
                 return(
-                <div className="individualCategory" key={type.id} onClick={()=>{categorySelected(type.id, type.name)}}>
+                <div className="individualCategory" key={type.id} onClick={()=>{categorySelected(type.id, type.name)}} id={type.id}>
                 <div className="categoryIcon">
                 {image}
                 </div>
