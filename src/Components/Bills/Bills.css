@@ -10,3 +10,27 @@
 .billDefaultDescription{
     @apply text-center mt-10 md:mt-60 text-xl md:text-2xl font-bold
 }
+.individualBill{
+    @apply bg-white text-sm md:text-base border-2 mb-3 p-3 border-2 w-11/12 md:w-9/12 lg:w-6/12 mx-auto border-gray-400 rounded-xl space-y-1 shadow-lg
+}
+.individualBillNo{
+    @apply font-bold py-2
+}
+.billNoAndDate{
+    @apply space-y-2 md:float-right
+}
+.deliveryAddress{
+    @apply pl-3
+}
+.billAmount{
+    @apply flex items-center md:pl-2
+}
+.finalBillAmount{
+    @apply md:text-xl flex font-bold justify-center items-center py-4
+}
+.foodItems{
+    @apply pl-3
+}
+.indFoodItem{
+    @apply flex 
+}

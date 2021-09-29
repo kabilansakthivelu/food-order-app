@@ -4,6 +4,7 @@ import {useAuthState} from 'react-firebase-hooks/auth';
 import SignIn from '../SignIn/SignIn';
 import {ValuesContext} from "../../App";
 import HeaderAndNavbar from '../HeaderAndNavbar/HeaderAndNavbar';
+import {BiRupee} from 'react-icons/bi';
 import './Bills.css';
 
 const Bills = () => {
@@ -26,15 +27,22 @@ const Bills = () => {
         }
     },[user])
 
-    useEffect(()=>{
-            const arr = [];
+    const billContentProvider = () =>{
+        const arr = [];
             billName.map((bill)=>{
+            return(
             db.collection('bills').doc(auth.currentUser.uid).collection('billsCollection').doc(bill).get().then((snapshot)=>{
-                const test = snapshot.data();
-                arr.push(test);
+                arr.push(snapshot.data())
                 setBillContent(arr)
-                })
+                }))
             })
+    }
+
+    useEffect(()=>{
+            billContentProvider();
+            if(billContent.length !== billName.length){
+                billContentProvider()
+            }
     },[billName])
 
     return (
@@ -48,9 +56,43 @@ const Bills = () => {
             {(billContent.length > 0) ? 
             (
             billContent.map((bill)=>{
+
+                const initialTime = parseInt(bill.time);
+            const getTime = new Date(initialTime).toString();
+            const setTime = getTime.split(" ");
+            const time = setTime[1] +" "+ setTime[2] +" "+ setTime[3] + " at " + setTime[4] + " IST";
+
                 return (
-                <div key={bill.id}>
-                <p>{bill.address1}</p>
+                <div key={bill.id} className="individualBill">
+                <div className="billNoAndDate">
+                <h1 className="individualBillNo">Bill No: {bill.time}</h1>
+                <h1>{time}</h1>
+                </div>
+                <h1 className="individualBillNo">Delivered at:</h1>
+                <h1 className="deliveryAddress">{bill.address1}</h1>
+                <h1 className="deliveryAddress">{bill.address2}</h1>
+                <h1 className="deliveryAddress">{bill.city}</h1>
+                <h1 className="deliveryAddress">Phone: {bill.phone}</h1>
+                <h1 className="individualBillNo">Food Items ordered:</h1>
+                {bill.foodItems.map((item)=>{
+                    return (
+                        <div key={item.id} className="foodItems">
+                            <div className="indFoodItem">
+                            <div className="billAmount">{item.name} --> {item.quantity} X {item.price} = </div>
+                            <div className="billAmount">
+                            <BiRupee/>
+                            {item.totalAmount}
+                            </div>
+                            </div>
+                        </div>
+                    )
+                })}
+                <h1 className="finalBillAmount">Bill Amount:
+                <div className="billAmount">
+                <BiRupee/>
+                {bill.total}
+                </div>
+                </h1>
                 </div>
                 )}
             )

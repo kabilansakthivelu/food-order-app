@@ -176,22 +176,22 @@ const Cart = () => {
 
                     <div className="modalFields">
                     <label htmlFor="address1">Address 1: &nbsp;</label>
-                    <input required ref={refAddress1} type="text" id="address1" name="address1" className="modalInputFields"/>
+                    <input required maxLength="25" ref={refAddress1} type="text" id="address1" name="address1" className="modalInputFields"/>
                     </div>
 
                     <div className="modalFields">
                     <label htmlFor="address2">Address 2: &nbsp;</label>
-                    <input required ref={refAddress2} type="text" id="address2" name="address1" className="modalInputFields"/>
+                    <input required maxLength="25" ref={refAddress2} type="text" id="address2" name="address1" className="modalInputFields"/>
                     </div>
 
                     <div className="modalFields">
                     <label htmlFor="city">City/Town: &nbsp;</label>
-                    <input required ref={refCity} type="text" id="city" name="city" className="modalInputFields"/>
+                    <input required maxLength="25" ref={refCity} type="text" id="city" name="city" className="modalInputFields"/>
                     </div>
 
                     <div className="modalFields">
                     <label htmlFor="phone">Phone No: &nbsp;</label>
-                    <input required ref={refPhone} type="number" id="phone" name="phone" className="modalInputFields"/>
+                    <input required maxLength="13" ref={refPhone} type="number" id="phone" name="phone" className="modalInputFields"/>
                     </div>
 
                     <div className="modalBtn">
