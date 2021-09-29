@@ -11,7 +11,7 @@
     @apply text-center mt-10 md:mt-60 text-xl md:text-2xl font-bold
 }
 .individualBill{
-    @apply bg-white text-sm md:text-base border-2 mb-3 p-3 border-2 w-11/12 md:w-9/12 lg:w-6/12 mx-auto border-gray-400 rounded-xl space-y-1 shadow-lg
+    @apply bg-white text-sm md:text-base border-2 mb-3 p-3 w-11/12 md:w-9/12 lg:w-6/12 mx-auto border-gray-400 rounded-xl space-y-1 shadow-lg
 }
 .individualBillNo{
     @apply font-bold py-2

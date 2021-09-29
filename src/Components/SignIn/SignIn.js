@@ -93,7 +93,7 @@ const SignIn = () => {
             </form>
 
             <div className="footer">
-            <p>Don't have an account?</p>
+            <p>New to Food Dunzo ?</p>
             <Link to="/signup" className="signUpLink">Register</Link>
             </div>
         </div>

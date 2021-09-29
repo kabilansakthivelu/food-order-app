@@ -80,7 +80,7 @@ const Cart = () => {
 
     const cartClear = () =>{
         const test = db.collection('cart').doc(auth.currentUser.uid).collection('items');
-        test.onSnapshot((snapshot)=>{
+        test.get().then((snapshot)=>{
             const arr = [];
             snapshot.forEach((doc)=>{
                 const item = doc.data();
@@ -90,7 +90,7 @@ const Cart = () => {
                 db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).delete();
             })
         })
-        }
+    }
 
         const checkOutFn = () =>{
             setIsCheckOutModal(true);

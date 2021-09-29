@@ -61,17 +61,16 @@ const Home = () => {
     }
 
     const itemAddBtn = (id, name, price, number) =>{
-        let number1 = 0;
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).set({
             id,
             name,
             price,
-            quantity: number1+1,
-            totalAmount : (price*(number1+1)),
+            quantity: 1,
+            totalAmount : price,
         })
         db.collection('cart').doc(auth.currentUser.uid).collection('items').doc(name).get().then((snapshot)=>{
             const itemDetails = snapshot.data();
-            document.getElementById(number).innerHTML = itemDetails.quantity;
+            document.getElementById(number).innerHTML = itemDetails.quantity;   
         })
     }
 
