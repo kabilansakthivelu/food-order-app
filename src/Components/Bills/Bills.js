@@ -16,7 +16,7 @@ const Bills = () => {
 
     useEffect(()=>{
         if(user){
-            const test = db.collection('bills').doc(auth.currentUser.uid).collection('billsCollection');
+            const test = db.collection('bills').doc(auth.currentUser.uid).collection('billsCollection').orderBy('time', 'desc');
             test.onSnapshot((snapshot)=>{
                 const billName1 = [];
                 snapshot.forEach((doc)=>{
