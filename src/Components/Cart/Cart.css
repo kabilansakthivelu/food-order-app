@@ -38,13 +38,13 @@
     @apply flex items-center justify-center mt-10 font-bold text-xl
 }
 .checkoutModal{
-    @apply m-5 md:mx-auto md:w-6/12 rounded-xl border-2 border-black mt-28 md:mt-44 p-3 md:p-6 outline-none bg-gray-200 overflow-y-scroll
+    @apply m-5 md:mx-auto md:w-6/12 rounded-xl border-2 border-black mt-10 md:mt-44 p-3 md:p-6 outline-none bg-gray-200
 }
 .modalTitle{
-    @apply font-bold text-center my-6 md:text-xl
+    @apply font-bold text-center my-4 md:my-6 md:text-xl
 }
 .modalFields{
-    @apply flex flex-col space-y-1 md:space-y-0 md:flex-row mb-4 md:items-center md:justify-center
+    @apply flex flex-col space-y-1 md:space-y-0 md:flex-row mb-2 md:mb-3 md:items-center md:justify-center
 }
 .modalInputFields{
     @apply rounded-lg h-8 w-full md:w-7/12 overflow-ellipsis pl-4
