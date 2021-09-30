@@ -104,7 +104,7 @@ const Cart = () => {
             const city = refCity.current.value;
             const phone = refPhone.current.value;
             if((address1[0] === " ") || (address2[0] === " ") || (city[0] === " ")){
-                toast.error("Please don't start with 'SPACE'. Enter a valid username.", {position: toast.POSITION.TOP_CENTER});
+                toast.error("Please don't start with 'SPACE'. Enter a valid input.", {position: toast.POSITION.TOP_CENTER});
             }
             else
             {   
