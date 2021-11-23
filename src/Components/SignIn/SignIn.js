@@ -50,6 +50,11 @@ const SignIn = () => {
         }
     }
 
+    const guestLogin = () =>{
+        refEmail.current.value = process.env.REACT_APP_GUEST_EMAIL;
+        refPassword.current.value = process.env.REACT_APP_GUEST_PASSWORD;
+    }
+
     return (
 
         <div className="signInPage">
@@ -90,6 +95,9 @@ const SignIn = () => {
             </div>
 
             <button className="signInBtn">Sign In</button>
+
+            <button className="signInBtn" onClick={guestLogin}>Guest Login</button>
+            
             </form>
 
             <div className="footer">
