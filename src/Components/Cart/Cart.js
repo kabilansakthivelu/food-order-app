@@ -173,7 +173,7 @@ const Cart = () => {
 
                 <Modal isOpen={isCheckOutModal} className="checkoutModal">
 
-                <h1 className="modalTitle">Please provide your address</h1>
+                <h1 className="modalTitle">Please provide the delivery address</h1>
 
                 <form onSubmit={orderPlacement}>
 

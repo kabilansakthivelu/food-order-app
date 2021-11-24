@@ -2,7 +2,7 @@
     @apply md:flex
 }
 .cartArea{
-    @apply md:bg-gray-100 w-screen p-3 md:p-6
+    @apply sm:bg-gray-100 w-screen min-h-screen p-3 md:p-6 sm:ml-36 xl:ml-44 2xl:ml-52
 }
 .sectionCartTitle{
     @apply font-bold text-xl mb-10 md:mb-20

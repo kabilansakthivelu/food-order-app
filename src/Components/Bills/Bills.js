@@ -99,7 +99,7 @@ const Bills = () => {
             ) 
             : 
             (<h1 className="billDefaultDescription">
-            You don't have any past orders. Place an order to view bills here
+            You don't have any past orders. Place orders to view bills here
             </h1>)
             }
             </div>
