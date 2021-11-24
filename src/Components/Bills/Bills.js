@@ -78,7 +78,7 @@ const Bills = () => {
                     return (
                         <div key={item.id} className="foodItems">
                             <div className="indFoodItem">
-                            <div className="billAmount">{item.name} --> {item.quantity} X {item.price} = </div>
+                            <div className="billAmount"> <span className="foodItemName"> {item.name} </span> --> {item.quantity} X {item.price} = </div>
                             <div className="billAmount">
                             <BiRupee/>
                             {item.totalAmount}

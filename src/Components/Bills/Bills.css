@@ -34,3 +34,6 @@
 .indFoodItem{
     @apply flex 
 }
+.foodItemName{
+    @apply w-28 overflow-ellipsis
+}
