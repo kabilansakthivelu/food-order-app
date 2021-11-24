@@ -8,6 +8,7 @@ import {BiRupee} from 'react-icons/bi';
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
 import Modal from 'react-modal';
 import {toast} from 'react-toastify';
+import {useHistory} from 'react-router-dom';
 import './Cart.css';
 
 toast.configure();
@@ -19,6 +20,7 @@ const Cart = () => {
     const [itemsInCart, setItemsInCart] = useState([]);
     const [finalTotal, setFinalTotal] = useState(0);
     const [isCheckOutModal, setIsCheckOutModal] = useState(false);
+    const history = useHistory();
     const refAddress1 = useRef();
     const refAddress2 = useRef();
     const refCity = useRef();
@@ -128,6 +130,7 @@ const Cart = () => {
                 })
                 cartClear();
                 setIsCheckOutModal(false);
+                history.push("/bills");
                 toast.success("Your order is placed successfully, Tasty food is en route.", {position: toast.POSITION.TOP_CENTER});
             }
         }
