@@ -24,7 +24,7 @@ const Header = () => {
     const hamburgerIconClick = () =>{
     setIsHamburgerOpen(!isHamburgerOpen);
     setIsHamburgerMenuShow(!isHamburgerMenuShow);
-    setMainContentShow(false);
+    (isHamburgerOpen == true) ? setMainContentShow(true) : setMainContentShow(false);
     }
 
     const hamburgerMenuDivClick = () =>{
